@@ -1,0 +1,13 @@
+version: 2
+
+sources:
+
+  - name: dados_brutos_prouni
+
+    database: postgres
+    schema: public
+    
+    tables:
+      - name: raw_prouni_2017
+      - name: raw_prouni_2018
+      - name: raw_prouni_2019
