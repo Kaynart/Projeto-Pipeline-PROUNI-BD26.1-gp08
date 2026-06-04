@@ -1,0 +1,1 @@
+{{ config(materialized='table') }} -- definição da configuração para table
