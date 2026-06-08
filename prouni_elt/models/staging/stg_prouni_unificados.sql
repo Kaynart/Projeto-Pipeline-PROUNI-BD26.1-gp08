@@ -22,7 +22,11 @@ SELECT
     CAST("BENEFICIARIO_DEFICIENTE_FISICO" AS VARCHAR)   AS beneficiario_deficiente_fisico,
     CAST("REGIAO_BENEFICIARIO_BOLSA" AS VARCHAR)        AS regiao_beneficiario_bolsa,
     CAST("SIGLA_UF_BENEFICIARIO_BOLSA" AS VARCHAR)      AS sigla_uf_beneficiario_bolsa,
-    CAST("MUNICIPIO_BENEFICIARIO_BOLSA" AS VARCHAR)     AS municipio_beneficiario_bolsa
+    CAST("MUNICIPIO_BENEFICIARIO_BOLSA" AS VARCHAR)     AS municipio_beneficiario_bolsa,
+    CAST("SEMESTRE_CONCESSAO_BOLSA" AS VARCHAR)         AS semestre_concessao_bolsa,
+
+    -- date
+    CAST("DT_CONCESSAO_BOLSA" AS DATE)                  AS dt_concessao_bolsa
 
 
 
@@ -52,7 +56,11 @@ select
     CAST("BENEFICIARIO_DEFICIENTE_FISICO" AS VARCHAR)   AS beneficiario_deficiente_fisico,
     CAST("REGIAO_BENEFICIARIO_BOLSA" AS VARCHAR)        AS regiao_beneficiario_bolsa,
     CAST("SIGLA_UF_BENEFICIARIO_BOLSA" AS VARCHAR)      AS sigla_uf_beneficiario_bolsa,
-    CAST("MUNICIPIO_BENEFICIARIO_BOLSA" AS VARCHAR)     AS municipio_beneficiario_bolsa
+    CAST("MUNICIPIO_BENEFICIARIO_BOLSA" AS VARCHAR)     AS municipio_beneficiario_bolsa,
+    CAST("SEMESTRE_CONCESSAO_BOLSA" AS VARCHAR)         AS semestre_concessao_bolsa,
+
+    -- date
+    CAST("DT_CONCESSAO_BOLSA" AS DATE)                  AS dt_concessao_bolsa
 
 
 from {{ source('dados_brutos_prouni', 'raw_prouni_2018') }}
@@ -81,7 +89,12 @@ select
     CAST("BENEFICIARIO_DEFICIENTE_FISICO" AS VARCHAR)   AS beneficiario_deficiente_fisico,
     CAST("REGIAO_BENEFICIARIO_BOLSA" AS VARCHAR)        AS regiao_beneficiario_bolsa,
     CAST("SIGLA_UF_BENEFICIARIO_BOLSA" AS VARCHAR)      AS sigla_uf_beneficiario_bolsa,
-    CAST("MUNICIPIO_BENEFICIARIO_BOLSA" AS VARCHAR)     AS municipio_beneficiario_bolsa
+    CAST("MUNICIPIO_BENEFICIARIO_BOLSA" AS VARCHAR)     AS municipio_beneficiario_bolsa,
+    CAST("SEMESTRE_CONCESSAO_BOLSA" AS VARCHAR)         AS semestre_concessao_bolsa,
+
+    -- date
+    CAST("DT_CONCESSAO_BOLSA" AS DATE)                  AS dt_concessao_bolsa
+
 
 
 from {{ source('dados_brutos_prouni', 'raw_prouni_2019') }}
