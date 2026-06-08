@@ -37,7 +37,10 @@ tratamento_final AS (
         -- UPPER + TRIM pra garantir integridade e uniformidade
         UPPER(TRIM(regiao_beneficiario_bolsa)) AS regiao_beneficiario_bolsa,
         UPPER(TRIM(sigla_uf_beneficiario_bolsa)) AS sigla_uf_beneficiario_bolsa,
-        UPPER(TRIM(municipio_beneficiario_bolsa)) AS municipio_beneficiario_bolsa
+        UPPER(TRIM(municipio_beneficiario_bolsa)) AS municipio_beneficiario_bolsa,
+        UPPER(TRIM(semestre_concessao_bolsa)) AS semestre_concessao_bolsa,
+
+        dt_concessao_bolsa -- date, nao recebe upper e trim
         
     FROM tratamento_nulos
 )
