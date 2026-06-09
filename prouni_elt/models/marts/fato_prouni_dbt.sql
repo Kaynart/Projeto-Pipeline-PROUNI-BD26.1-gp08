@@ -35,11 +35,11 @@ SELECT
 
 FROM base
 
-
+-- Junta Temporal
 LEFT JOIN d_temporal t
     ON base.dt_concessao_bolsa = t.dt_concessao_bolsa
 
--- Junta Beneficiário
+-- Junta Beneficiário 
 LEFT JOIN d_beneficiario b
     ON TRIM(base.cpf_beneficiario_bolsa) = TRIM(b.cpf_beneficiario_bolsa)
 
