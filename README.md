@@ -8,6 +8,19 @@ O projeto explora o contraste prático entre duas arquiteturas de Engenharia de 
 
 ---
 
+## 👥 Equipe 08
+| **Nome Integrante** | **login CIn** |
+| :--- | :---: |
+| Caio de Oliveira Daltro Gouté | ***codg*** |
+| Felipe Almeida Albuquerque de Holanda | ***faah*** |
+| Guilherme Galindo Zloccowick | ***ggz*** |
+| Jonas Manoel Barbosa de Lima | ***jmbl2*** |
+| Kaynan Roberth Torres Silva | ***krts*** |
+| Maria Clara Pereira Goncalves | ***mcpg*** |
+
+---
+
+
 ## 🎯 O Cenário e os Desafios dos Dados
 
 O principal objetivo do projeto foi unificar anos de dados públicos fragmentados para viabilizar uma análise histórica consistente sobre o perfil dos beneficiários e das instituições de ensino superior (IES).
@@ -36,6 +49,11 @@ Para fins comparativos e de aprendizado, estruturamos a solução através de du
       * **Staging (`stg_`):** Unificação dos três anos via `UNION ALL`, normalização dos nomes das colunas para caixa baixa (evitando o uso de aspas em SQL) e aplicação de `CAST` para unificar os tipos das colunas.
       * **Intermediate (`int_`):** Limpeza pesada e de maior densidade, responsável pela eliminação de linhas 100% nulas de 2019 e aplicação conjunta de `UPPER()` e `TRIM()` para garantir a integridade do texto.
       * **Marts:** Criação das Tabelas Fato e Dimensão finais — Esquema Estrela.
+---
+
+## 🖼️ Diagrama de Representação
+
+<img width="1711" height="705" alt="Image" src="https://github.com/user-attachments/assets/b77eacac-83fd-4a1d-b1db-a7c18416f3c5" />
 
 ---
 
@@ -50,6 +68,7 @@ Ao final do pipeline, os dados limpos são organizados em um modelo dimensional 
 | **`dim_ies`** | Dimensão | Dados das Instituições de Ensino Superior (Código EMEC e Nome normalizado da IES). |
 | **`dim_curso`** | Dimensão | Detalhes das vagas (Nome do Curso, Turno e Modalidade de Ensino). |
 | **`dim_localidade`** | Dimensão | Hierarquia geográfica do beneficiário (Município, UF e Região). |
+| **`dim_temporal`** | Dimensão | Dados representativos de tempo da concessão de bolsa (Ano, Mês e Dia de Concessão e Semestre). |
 
 ---
 
@@ -70,7 +89,8 @@ Ao final do pipeline, os dados limpos são organizados em um modelo dimensional 
 .
 ├── analysis/                       # Scripts SQL com as análises finais (Insights)
 ├── notebooks/                      # Scripts de ETL e carga inicial executados pelos colegas
-│   ├── data/                       # Arquivos CSV brutos
+│   ├── data/                       # Arquivos CSV brutos usados de fato, com dados sintéticos
+|   ├── data_original/              # Arquivos CSV inicialmente recebidos
 │   ├── ETL.ipynb                   # Pipeline 1: ETL completo em Python
 │   └── ELT.ipynb                   # Pipeline 2: Carga bruta para o dbt
 ├──  prouni_elt/                    # Projeto dbt (Pipeline ELT)
@@ -127,7 +147,7 @@ dbt run
 A modelagem dimensional permitiu responder a perguntas complexas de negócio com alta performance e sem duplicidade de registros:
 
 1. **Análise Demográfica:** Mapeamento do perfil socioeconômico dos beneficiários (gênero, raça e incidência de PCD) cruzado com o tipo de bolsa (integral ou parcial).
-2. **Distribuição Geográfica:** Identificação dos estados e municípios com maior volume de incentivos federais aplicados na educação superior.
-3. **Mapeamento Institucional:** Ranking dos cursos e das Instituições de Ensino Superior (IES) que mais ofertaram vagas pelo programa entre 2017 e 2019.
+2. **Mapeamento Institucional:** Análise da expansão da modalidade Ensino à Distância (EAD) pelo PROUNI ao longo dos anos.
+3. **Análise Social:** Identificação dos perfis sociais predominantes no programa governamental no triênio trabalhado.
    
-> **Nota sobre a Qualidade dos Dados:** Durante a fase de construção da tabela Intermediate, o pipeline eliminou com sucesso um lote de registros corrompidos nativos do ano de 2019, que continham linhas inteiramente nulas, blindando as métricas da tabela Fato contra distorções.
+> **Nota sobre a Qualidade dos Dados:** Durante a fase de construção da tabela Intermediate, o pipeline eliminou com sucesso um lote de registros corrompidos nativos do ano de 2019, que continham linhas inteiramente nulas, blindando as métricas da tabela Fato contra distorções. Além disso, também foram aplicados dados sintéticos para ampliação e detalhamento da análise temporal. 
