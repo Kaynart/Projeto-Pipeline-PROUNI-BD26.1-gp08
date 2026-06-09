@@ -18,6 +18,10 @@ d_ies AS (
 
 d_curso AS (
     SELECT * FROM {{ ref('dim_curso_dbt') }}
+),
+
+d_temporal AS (
+    SELECT * FROM {{ ref('dim_temporal_dbt') }}
 )
 
 SELECT
@@ -25,9 +29,15 @@ SELECT
     l.id_localidade_sk,
     i.id_ies_sk,
     c.id_curso_sk,
+    t.id_temporal_sk,
     base.ano_concessao_bolsa,
     base.tipo_bolsa
+
 FROM base
+
+
+LEFT JOIN d_temporal t
+    ON base.dt_concessao_bolsa = t.dt_concessao_bolsa
 
 -- Junta Beneficiário
 LEFT JOIN d_beneficiario b
