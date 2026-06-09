@@ -56,3 +56,4 @@ LEFT JOIN d_ies i
 LEFT JOIN d_curso c
     ON  TRIM(base.nome_curso_bolsa)        = TRIM(c.nome_curso_bolsa)
     AND TRIM(base.modalidade_ensino_bolsa) = TRIM(c.modalidade_ensino_bolsa)
+    AND TRIM(base.nome_turno_curso_bolsa)  = TRIM(c.nome_turno_curso_bolsa)
