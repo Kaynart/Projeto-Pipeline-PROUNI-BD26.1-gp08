@@ -7,12 +7,12 @@ WITH base AS (
 datas_unicas AS (
     SELECT DISTINCT
         dt_concessao_bolsa,
-        semestre_concessao_bolsa
+        semestre_concessao_bolsa,
         
         -- Extract para obter dia, mês, ano e semestre a partir da data de concessão da bolsa
         EXTRACT(DAY FROM dt_concessao_bolsa) AS dia,
         EXTRACT(MONTH FROM dt_concessao_bolsa) AS mes,
-        EXTRACT(YEAR FROM dt_concessao_bolsa) AS ano,
+        EXTRACT(YEAR FROM dt_concessao_bolsa) AS ano
     FROM base
     WHERE dt_concessao_bolsa IS NOT NULL
 )
