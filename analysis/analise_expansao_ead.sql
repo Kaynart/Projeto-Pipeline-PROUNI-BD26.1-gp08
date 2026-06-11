@@ -11,7 +11,7 @@ SELECT
     c.modalidade_ensino_bolsa AS modalidade,
     COUNT(*) AS total_bolsas,
     -- Mostra a distribuição percentual dentro de cada ano:
-    ROUND(COUNT() * 100.0 / SUM(COUNT()) OVER(PARTITION BY f.ano_concessao_bolsa), 2) AS percentual_no_ano
+    ROUND(COUNT(*) * 100.0 / SUM(COUNT(*)) OVER(PARTITION BY f.ano_concessao_bolsa), 2) AS percentual_no_ano
 FROM fato f
 INNER JOIN dim_curso c 
     ON f.id_curso_sk = c.id_curso_sk
